@@ -1,0 +1,63 @@
+﻿@model IKProject_2512.Models.PM
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Hoşgeldiniz @ViewBag.UserName</h1>
+
+<div>
+    <picture type="url" asp-for="Picture" class="img-fluid">
+        <img src="@Url.Content(Model.PhotoPath)" height="200" />
+    </picture>
+</div>
+<div>
+    <h4>Sisteme Kayıtlı Bilgileriniz</h4>
+    <hr />
+
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Surname)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Surname)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.MailAddress)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.MailAddress)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.BirthDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.BirthDate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.HireDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.HireDate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.ID" class="btn btn-info"> Bilgilerimi Güncelle</a>
+    <br />
+    <hr />
+    <a asp-action="PlatformList" class="btn btn-secondary">Platform Yöneticilerini Görüntüle</a>
+</div>
+
+

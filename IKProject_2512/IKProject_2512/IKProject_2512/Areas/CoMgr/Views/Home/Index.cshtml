@@ -1,0 +1,162 @@
+﻿@model IKProject_2512.Models.Employee
+
+@{
+    ViewData["Title"] = "Index";
+}
+<h4 style="color: black; font-weight: 600; margin-top: 5px;">
+    Sayın @Html.DisplayFor(model => model.EmployeeName)  @Html.DisplayFor(model => model.EmployeeMiddleName) @Html.DisplayFor(model => model.EmployeeLastName)
+</h4>
+<div class="content">
+    <div class="random">
+        <span class="nbr ltr">0</span>
+        <span class="nbr ltr">0</span>
+        <span class="nbr ltr">0</span>
+        <span class="nbr ltr">0</span>
+        <span class="nbr ltr">0</span>
+        <span class="nbr ltr">0</span>
+        <span class="nbr ltr">0</span>
+        <span class="nbr ltr">0</span>
+        <span class="nbr ltr">0</span>
+        <span class="nbr ltr">0</span>
+        <span class="nbr ltr">0</span>
+    </div>
+</div>
+
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script>
+    $(document).ready(function () {
+
+        let $randomnbr = $('.nbr');
+        let $timer = 30;
+        let $data = 0;
+        let $index;
+        let $change;
+        let letters = ["H", "O", "Ş", "G", "E", "L", "D", "İ", "N", "İ", "Z"]
+
+        $randomnbr.each(function () {
+            change = Math.round(Math.random() * 100);
+            $(this).attr('data-change', change);
+        })
+
+        function random() {
+            return Math.round(Math.random() * 9);
+        }
+
+        function select() {
+            return Math.round(Math.random() * $randomnbr.length + 1);
+        }
+
+        function value() {
+            $('.nbr:nth-child(' + select() + ')').html('' + random() + '');
+            $('.nbr:nth-child(' + select() + ')').attr('data-number', $data);
+            $data++;
+
+            $randomnbr.each(function () {
+                if (parseInt($(this).attr('data-number')) > parseInt($(this).attr('data-change'))) {
+                    index = $('.ltr').index(this);
+                    $(this).html(letters[index]);
+                    $(this).removeClass('nbr');
+                }
+            })
+        }
+        $it = setInterval(value, $timer);
+
+    })
+</script>
+@*<h1>Index</h1>
+
+    <div>
+        <h4>Çalışan Sayfası: Sisteme Kayıtlı Bilgileriniz</h4>
+        <hr />
+        <dl class="row">
+
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.IsCompanyManager)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.IsCompanyManager)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.IsActive)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.IsActive)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.Department)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.Department.DepartmentCode)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.EmployeeName)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.EmployeeName)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.EmployeeMiddleName)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.EmployeeMiddleName)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.EmployeeLastName)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.EmployeeLastName)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.BirthDate)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.BirthDate)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.HireDate)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.HireDate)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.Title)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.Title)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.MailAddress)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.MailAddress)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.PhoneNumber)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.PhoneNumber)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.HomeAddress)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.HomeAddress)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.Shift)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.Shift)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.Company)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model=>model.Company.CompanyName)
+            </dd>
+
+        </dl>
+    </div>*@
+

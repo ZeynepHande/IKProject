@@ -1,0 +1,74 @@
+﻿@model IEnumerable<IKProject_2512.Models.CompanyPackage>
+
+@{
+    ViewData["Title"] = "MShipDefinedCoList";
+}
+
+<h1>Silmek İstenen Pakete Tanımlı Şirketler Listesi</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Company.Logo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Company.CompanyName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Package)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MembershipMonthlyPeriod)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MembershipPackagePrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PackageStartDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PackageRemainingMonths)
+                <span>(Aylık)</span>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <img src="@("~/ImageFile/"+item.Company.Logo)" asp-append-version="true" width="200" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Company.CompanyName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Package.PackageName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MembershipMonthlyPeriod)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MembershipPackagePrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PackageStartDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PackageRemainingMonths)
+                </td>
+                <td>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<form asp-action="MshipDefinedCoList" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <input type="submit" value="Paketi Sil" asp-route-id="@ViewBag.PackageID" asp-route-name="@ViewBag.PackageName" class="btn btn-danger" /> |
+    <a class="btn btn-info" asp-area="Platform" asp-controller="Membership" asp-action="MembershipList">Listeye Geri Dön</a>
+</form>

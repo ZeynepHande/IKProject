@@ -1,0 +1,169 @@
+﻿@model IKProject_2512.Models.PM
+@{ ViewData["Title"] = "Details"; }
+<style>
+    .form {
+        background: rgba(255,255,255,0.9);
+        padding: 40px;
+        max-width: 600px;
+        margin: 40px auto;
+        border-radius: 10px;
+        box-shadow: 0 0 20px 2px rgba(0,0,0,0.5);
+    }
+
+    h2 {
+        text-align: center;
+        text-shadow: 0 0 20px 2px rgba(0,0,0,0.9);
+        color: deepskyblue;
+        font-weight: 800;
+        margin: 0 0 30px;
+    }
+
+    dt, dd {
+        color: black;
+        text-align: left;
+    }
+</style>
+
+<div class="form">
+    <h2>Detaylar</h2>
+    <dl class="row" style="text-transform:capitalize">
+        <dd class="col-sm-12">
+            <img src="@("~/ImageFile/"+Model.PhotoPath)" asp-append-version="true" width="100" />
+        </dd>
+        <dt class="col-sm-4">Adı</dt>
+        <dd class="col-sm-8">: @Html.DisplayFor(model => model.Name) @Html.DisplayFor(model => model.MiddleName) </dd>
+
+        <dt class="col-sm-4">Soyadı</dt>
+        <dd class="col-sm-8">: @Html.DisplayFor(model => model.Surname)</dd>
+
+        <dt class="col-sm-4">Mail Adresi</dt>
+        <dd class="col-sm-8" style="text-transform:lowercase">: @Html.DisplayFor(model => model.MailAddress)</dd>
+
+        <dt class="col-sm-4">Doğum Tarihi</dt>
+        <dd class="col-sm-8">: @Html.DisplayFor(model => model.BirthDate)</dd>
+
+        <dt class="col-sm-4">İşe Alım Tarihi</dt>
+        <dd class="col-sm-8">: @Html.DisplayFor(model => model.HireDate)</dd>
+
+        <dt class="col-sm-4">İşten Ayrılma Tarihi</dt>
+        <dd class="col-sm-8">
+            :
+            @if (Model.TerminationDate != null)
+            {
+@Html.DisplayFor(model => model.TerminationDate)}
+        </dd>
+
+        <dt class="col-sm-4">Adresi</dt>
+        <dd class="col-sm-8">: @Html.DisplayFor(model => model.Address)</dd>
+
+        <dt class="col-sm-4">
+            @if (Model.TerminationDate == null)
+            {
+<a asp-area="Platform" asp-controller="Home" asp-action="Edit" asp-route-id="@Model.ID" class="btn btn-danger">Güncelle</a>}
+        </dt>
+    </dl>
+</div>
+
+
+@*<style>
+    .table_responsive {
+    border: 1px solid deepskyblue;
+    background-color: #efefef33;
+    padding: 12px;
+    font-size:12px;
+    overflow: auto;
+    margin: auto;
+    border-radius: 4px;
+    }
+    table{
+    /* width:100%;*/
+    font-size:10px;
+    color:#444;
+    white-space:nowrap;
+    border-collapse:collapse;
+
+     }
+    table>thead{
+    background-color:deepskyblue;
+    font-size:10px;
+    color:#fff;
+    }
+    table>thead th{
+    padding:15px;
+
+     }
+    table th,table td{
+    border:1px solid black;
+    padding:10px 15px;
+    }
+
+     table>tbody>tr>td>img{
+    display:inline-block;
+    width:60px;
+    height:60px;
+    object-fit:cover;
+    border-radius:50%;
+    border:4px solid #fff;
+    box-shadow:0 2px 6px #0003;
+    }
+    table>tbody>tr{
+    background-color:#fff;
+    transition:0.3s ease-in-out;
+    }
+    table>tbody>tr:nth-child(even){
+    background-color:rgb(238,238,238);
+    }
+    table>tbody>tr:hover{
+    filter:drop-shadow(0px 2px 6px #0002);
+    }
+    </style>
+    <div class="table_responsive">
+    <table>
+    <thead>
+    <tr>
+    <th>Fotoğrafı</th>
+    <th>Adı</th>
+    <th>Soyadı</th>
+    <th>MailAdresi</th>
+    <th>Doğum Tarihi</th>
+    <th>İşe Alım Tarihi</th>
+    @if (Model.TerminationDate != null)
+    {
+    <th>İşten Ayrılma Tarihi</th>
+    }
+
+     <th>Adresi</th>
+    <th>İşlem</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+    <td>
+    <img src="@("~/ImageFile/"+Model.PhotoPath)" asp-append-version="true" />
+    </td>
+    <td>@Html.DisplayFor(model => model.Name)</td>
+    <td>@Html.DisplayFor(model => model.Surname)</td>
+    <td>@Html.DisplayFor(model => model.MailAddress)</td>
+    <td>@Html.DisplayFor(model => model.BirthDate)</td>
+    <td>@Html.DisplayFor(model => model.HireDate)</td>
+    @if (Model.TerminationDate != null)
+    {
+    <td>@Html.DisplayFor(model => model.TerminationDate)</td>
+    }
+    <td>@Html.DisplayFor(model => model.Address)</td>
+    <td>
+    @if (Model.TerminationDate == null)
+    {
+    <a asp-area="Platform" asp-controller="Home" asp-action="Edit" asp-route-id="@Model.ID" class="btn btn-danger">Güncelle</a>
+    }
+
+     </td>
+    </tr>
+    </tbody>
+    </table>
+    @if (Model.TerminationDate != null)
+    {
+    <a asp-area="Platform" asp-controller="Home" asp-action="PassivePlatformList" class="btn btn-info">Pasif Platform Yöneticilerini Görüntüle</a>
+    }
+    <a asp-area="Platform" asp-controller="Home" asp-action="PlatformList" class="btn btn-info">Platform Yöneticilerini Görüntüle</a>
+    </div>*@

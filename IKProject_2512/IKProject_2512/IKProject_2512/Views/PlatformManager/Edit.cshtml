@@ -1,0 +1,75 @@
+﻿@model IKProject_2512.Models.VM_PM.PM_Edit
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Hesap Güncelleme Ekranı</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ID" />
+
+            <div class="img-fluid">
+                <picture class="img-fluid">
+                    <img src="https://cdn3.vectorstock.com/i/100x100/30/97/flat-business-man-user-profile-avatar-icon-vector-4333097.jpg" width="100" />
+                </picture>
+                <span asp-validation-for="PhotoPath" class="text-danger"></span>
+            </div>
+
+
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input type="text" asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="MiddleName" class="control-label"></label>
+                <input type="text" asp-for="MiddleName" class="form-control" />
+                <span asp-validation-for="MiddleName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Surname" class="control-label"></label>
+                <input type="text" asp-for="Surname" class="form-control" />
+                <span asp-validation-for="Surname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MailAddress" class="control-label"></label>
+                <input type="email" asp-for="MailAddress" class="form-control" />
+                <span asp-validation-for="MailAddress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BirthDate" class="control-label"></label>
+                <input type="date" asp-for="BirthDate" class="form-control" />
+                <span asp-validation-for="BirthDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HireDate" class="control-label"></label>
+                <input type="date" asp-for="HireDate" class="form-control" />
+                <span asp-validation-for="HireDate" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Address" class="control-label"></label>
+                <textarea type="text" asp-for="Address" class="form-text"rows="3" cols="50"></textarea>
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" asp-route-id="@Model.ID" asp-route-name="@Model.Name" asp-route-surname="@Model.Surname" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" >Hesabıma Geri Dön</a>
+</div>
+
+
+

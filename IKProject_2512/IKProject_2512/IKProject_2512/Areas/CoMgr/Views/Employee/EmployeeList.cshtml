@@ -1,0 +1,59 @@
+﻿@model IEnumerable<IKProject_2512.Models.Employee>
+@{
+    ViewData["Title"] = "EmployeeList";
+}
+@using Microsoft.AspNetCore.Http
+
+<h4>Aktif Personel Listesi</h4>
+
+<br />
+<br />
+<a class="btn btn-info text-white" asp-action="PassiveEmployeeList">Pasif Personel Listesi</a>
+
+<table class="table " style="text-transform:capitalize">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PhotoPath)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EmployeeName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EmployeeLastName)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <img src="@("~/ImageFile/"+item.PhotoPath)" asp-append-version="true" width="200" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EmployeeName) @Html.DisplayFor(modelItem => item.EmployeeMiddleName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EmployeeLastName)
+                </td>
+
+                @*<td style="text-align:left;padding-left:100px;">
+                        @if (item.IsCompanyManager == true && ViewBag.ActiveID == item.EmployeeID || item.IsCompanyManager == false)
+                        {
+                            <a class="btn btn-dark" asp-area="CoMgr" asp-controller="Employee" asp-action="Edit" asp-route-id="@item.EmployeeID">Güncelle</a>
+                        }
+
+                        <a class="btn btn-dark" asp-area="CoMgr" asp-controller="Employee" asp-action="Details" asp-route-id="@item.EmployeeID">Detayları Gör</a>
+
+                        @if (item.IsCompanyManager == false && item.EmployeeID != ViewBag.ActiveID)
+                        {
+                            <a class="btn btn-danger" asp-area="Platform" asp-controller="Home" asp-action="Delete" asp-route-id="@item.EmployeeID">Yöneticiyi Sil</a>
+                        }
+                    </td>*@
+            </tr>
+        }
+    </tbody>
+</table>

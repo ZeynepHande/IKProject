@@ -1,0 +1,132 @@
+﻿@model IKProject_2512.Models.PM
+@{
+    ViewData["Title"] = "BilgeAdam Teknoloji";
+}
+
+@*<h1>Hoşgeldiniz @ViewBag.UserName</h1>*@
+
+<h4 style="color: black; font-weight: 600; margin-top: 5px;" >
+    Sayın @Html.DisplayFor(model => model.Name) @Html.DisplayFor(model => model.MiddleName) @Html.DisplayFor(model => model.Surname),
+</h4>
+<div class="content">  
+    <div class="random">
+        <span class="nbr ltr">0</span>
+        <span class="nbr ltr">0</span>
+        <span class="nbr ltr">0</span>
+        <span class="nbr ltr">0</span>
+        <span class="nbr ltr">0</span>
+        <span class="nbr ltr">0</span>
+        <span class="nbr ltr">0</span>
+        <span class="nbr ltr">0</span>
+        <span class="nbr ltr">0</span>
+        <span class="nbr ltr">0</span>
+        <span class="nbr ltr">0</span>
+    </div>
+</div>
+
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script>
+    $(document).ready(function () {
+
+        let $randomnbr = $('.nbr');
+        let $timer = 30;
+        let $data = 0;
+        let $index;
+        let $change;
+        let letters = ["H", "O", "Ş", "G", "E", "L", "D", "İ", "N", "İ", "Z"]
+
+        $randomnbr.each(function () {
+            change = Math.round(Math.random() * 100);
+            $(this).attr('data-change', change);
+        })
+
+        function random() {
+            return Math.round(Math.random() * 9);
+        }
+
+        function select() {
+            return Math.round(Math.random() * $randomnbr.length + 1);
+        }
+
+        function value() {
+            $('.nbr:nth-child(' + select() + ')').html('' + random() + '');
+            $('.nbr:nth-child(' + select() + ')').attr('data-number', $data);
+            $data++;
+
+            $randomnbr.each(function () {
+                if (parseInt($(this).attr('data-number')) > parseInt($(this).attr('data-change'))) {
+                    index = $('.ltr').index(this);
+                    $(this).html(letters[index]);
+                    $(this).removeClass('nbr');
+                }
+            })
+        }
+        $it = setInterval(value, $timer);
+
+    })
+</script>
+@*<div>
+    <h4>Sisteme Kayıtlı Bilgileriniz</h4>
+    <br />
+    <hr />
+
+    <dl class="row">
+        <dd class="col-sm-12">
+            <img src="@("~/ImageFile/"+Model.PhotoPath)" asp-append-version="true" width="200" />
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.MiddleName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.MiddleName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Surname)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Surname)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.MailAddress)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.MailAddress)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.BirthDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.BirthDate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.HireDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.HireDate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-area="Platform" asp-controller="Home" asp-action="Edit" asp-route-id="@Model.ID" class="btn btn-info"> Bilgilerimi Güncelle</a>
+    <br />
+    
+</div>*@
+
+
+
+

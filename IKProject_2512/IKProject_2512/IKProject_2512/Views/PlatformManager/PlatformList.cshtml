@@ -1,0 +1,41 @@
+﻿@model IEnumerable<IKProject_2512.Models.PM>
+@{
+    ViewData["Title"] = "PlatformList";
+}
+
+<h1>Platform Yöneticileri Listesi</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Surname)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Surname)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.ID">Güncelle</a> 
+                    <a asp-action="Details" asp-route-id="@item.ID">Detayları Gör</a> 
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+

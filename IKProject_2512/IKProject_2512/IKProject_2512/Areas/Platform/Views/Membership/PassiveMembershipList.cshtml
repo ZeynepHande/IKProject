@@ -1,0 +1,49 @@
+﻿@model IEnumerable<IKProject_2512.Models.MembershipPackage>
+
+@{
+    ViewData["Title"] = "MembershipList";
+}
+
+<h1>Pasif Üyelik Paketleri Listesi</h1>
+
+<table class="table table-primary table-hover table-active table-info">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PhotoPath)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PackageName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PackageMaxCapacity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PackageBasePrice)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <img src="@("~/ImageFile/"+item.PhotoPath)" asp-append-version="true" width="200" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PackageName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PackageMaxCapacity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PackageBasePrice)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a asp-area="Platform" asp-controller="Membership" asp-action="MembershipList">Aktif Paketler Listesini Görüntüle</a> |
+

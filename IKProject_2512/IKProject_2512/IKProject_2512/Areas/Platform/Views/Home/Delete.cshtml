@@ -1,0 +1,144 @@
+﻿@model IKProject_2512.Areas.Platform.Models.PlatformMgrAddModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Kullanıcı Silme Ekranı</h1>
+
+<style>
+
+
+    .table_responsive {
+        max-width: 900px;
+        border: 1px solid deepskyblue;
+        background-color: #efefef33;
+        padding: 15px;
+        overflow: auto;
+        margin: auto;
+        border-radius: 4px;
+    }
+
+    table {
+        width: 100%;
+        font-size: 10px;
+        color: #444;
+        white-space: nowrap;
+        border-collapse: collapse;
+    }
+
+        table > thead {
+            background-color: deepskyblue;
+            color: #fff;
+        }
+
+            table > thead th {
+                padding: 15px;
+            }
+
+        table th, table td {
+            border: 1px solid #00000017;
+            padding: 10px 15px;
+        }
+
+        table > tbody > tr > td > img {
+            display: inline-block;
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid #fff;
+            box-shadow: 0 2px 6px #0003;
+        }
+
+        table > tbody > tr {
+            background-color: #fff;
+            transition: 0.3s ease-in-out;
+        }
+
+            table > tbody > tr:nth-child(even) {
+                background-color: rgb(238,238,238);
+            }
+
+            table > tbody > tr:hover {
+                filter: drop-shadow(0px 2px 6px #0002);
+            }
+</style>
+<div class="table_responsive">
+    <table>
+        <thead>
+            <tr>
+                <th></th>
+                <th>Adı</th>
+                <th>Soyadı</th>
+                <th>Mail Adresi</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr>
+                <td>
+                    <img src="@("~/ImageFile/"+Model.PhotoPath)" asp-append-version="true" />
+                </td>
+
+                <td>@Html.DisplayFor(model => model.Name) @Html.DisplayFor(model => model.MiddleName)</td>
+                <td>@Html.DisplayFor(model => model.Surname)</td>
+                <td>@Html.DisplayFor(model => model.MailAddress)</td>
+
+            </tr>
+        </tbody>
+    </table>
+    <form asp-action="Delete" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger font-weight-bolder" style="background-color:white"></div>
+        <input type="hidden" asp-for="ID" />
+        <input type="hidden" asp-for="Name" />
+        <input type="hidden" asp-for="Surname" />
+        <input type="hidden" asp-for="HireDate" />
+        <input type="hidden" asp-for="PhotoPath" />
+        <input type="hidden" asp-for="MailAddress" />
+
+        <div class="form-group" style="background-color:white">
+            <label asp-for="TerminationDate" class="control-label"></label>
+            <input type="date" asp-for="TerminationDate" class="form-control" />
+            <span asp-validation-for="TerminationDate" class="text-danger font-weight-bolder"></span>
+        </div>
+
+
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Kullanıcıyı Silme Ekranı</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body"> Kullanıcıyı Silmek istediğinize Emin misiniz?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+                        @*<button type="button" class="btn btn-primary">Ana Ekrana Dön</button>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button onclick="myFunction()" id="deneme" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+            Kullanıcıyı Sil
+        </button>
+
+        <input style="display:none" id="kullanıcıSil" type="submit" value="Kullanıcıyı Silinecek" class="btn btn-info" /> 
+
+        <a class="btn btn-danger" asp-action="PlatformList">Listeye Geri Dön</a>
+    </form>
+
+</div>
+<script>
+    function myFunction() {
+        document.getElementById("kullanıcıSil").style.display = "block";
+        document.getElementById("deneme").style.display = "none";
+    }    
+</script>
+
+
+
+

@@ -1,0 +1,62 @@
+﻿@model IKProject_2512.Models.MembershipPackage
+
+@{
+    ViewData["Title"] = "MShipDetails";
+}
+<style>
+    .form {
+        background: rgba(255,255,255,0.9);
+        padding: 40px;
+        max-width: 600px;
+        margin: 40px auto;
+        border-radius: 10px;
+        box-shadow: 0 0 20px 2px rgba(0,0,0,0.5);
+    }
+
+    h2 {
+        text-align: center;
+        text-shadow: 0 0 20px 2px rgba(0,0,0,0.9);
+        color: deepskyblue;
+        font-weight: 800;
+        margin: 0 0 30px;
+    }
+
+    dt, dd {
+        color: black;
+        text-align: left;
+    }
+</style>
+
+<div class="form">
+    <h2>Üyelik Paket Detayları</h2>
+
+    <dl class="row">
+        <dd class="col-sm-12">
+            <img src="@("~/ImageFile/"+Model.PhotoPath)" asp-append-version="true" width="80" />
+        </dd>
+
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.PackageName)
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.PackageName)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.PackageMaxCapacity)
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.PackageMaxCapacity)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.PackageBasePrice)
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.PackageBasePrice)
+        </dd>
+
+    </dl>
+    <div>
+        <a class="btn btn-info" asp-area="Platform" asp-controller="Membership" asp-action="MShipEdit" asp-route-id="@Model.PackageID">Düzenle</a> |
+        <a class="btn btn-danger" asp-area="Platform" asp-controller="Membership" asp-action="MembershipList">Listeye Geri Dön</a>
+    </div>
+</div>

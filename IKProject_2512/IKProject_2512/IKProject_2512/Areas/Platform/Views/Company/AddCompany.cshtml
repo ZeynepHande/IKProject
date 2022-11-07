@@ -1,0 +1,159 @@
+﻿@model IKProject_2512.Areas.Platform.Models.CompanyEmployeeModel
+
+@{
+    ViewData["Title"] = "YeniŞirketEkle ";
+}
+
+<style>
+    .form {
+        background: rgba(255,255,255,0.9);
+        padding: 40px;
+        max-width: 600px;
+        margin: 40px auto;
+        border-radius: 10px;
+        box-shadow: 0 0 20px 2px rgba(0,0,0,0.5);
+    }
+
+    h2 {
+        text-align: center;
+        text-shadow: 0 0 20px 2px rgba(0,0,0,0.9);
+        color: deepskyblue;
+        font-weight: 800;
+        margin: 0 0 30px;
+    }
+
+    label {
+        color: black;
+    }
+
+    input, textarea {
+        display: block;
+        width: 100%;
+        height: 100%;
+        border: 1px solid black;
+        color: black;
+    }
+
+    textarea {
+        border: 3px solid black;
+        resize: vertical;
+    }
+
+    .form-group {
+        position: relative;
+        margin-bottom: 20px;
+    }
+
+    /*.form-control {
+        color: black;
+    }*/
+
+    .form-input {
+        width: 300px;
+        padding: 20px;
+        background: #fff;
+        border: 2px dashed #555;
+    }
+
+        .form-input input {
+            display: none;
+        }
+
+        .form-input label {
+            display: block;
+            width: 100px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            background: #333;
+            color: #fff;
+            font-size: 12px;
+            font-weight: 500;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .form-input img {
+            width: 100px;
+            display: none;
+            margin-top: 5px;
+        }
+</style>
+
+<div class="form">
+    <h2>Şirket Detayları</h2>
+    <form asp-area="Platform" asp-controller="Company" asp-action="AddCompany" enctype="multipart/form-data">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+
+        <div class="form-input">
+            <label for="file-ip-1">FotoğrafYükle</label>
+            <input type="file" asp-for="PhotoFile" id="file-ip-1" accept="image/*" onchange="showPreview(event);" />
+            <div class="preview m-1">
+                <img id="file-ip-1-preview" />
+            </div>
+        </div>
+
+        <input type="text" asp-for="CompanyName" placeholder="Şirket Adı..." class="form-control" />
+        <span asp-validation-for="CompanyName" class="text-danger"></span>
+
+        <input type="text" asp-for="CommercialName" placeholder="Şirketin Ticari Adı..." class="form-control" />
+        <span asp-validation-for="CommercialName" class="text-danger"></span>
+
+        <input type="text" asp-for="MainCompanyName" placeholder="Şirketin Bağlı Olduğu Üst Şirket Varsa..." class="form-control" />
+        <span asp-validation-for="MainCompanyName" class="text-danger"></span>
+
+        <input type="tel" asp-for="PhoneNumber" placeholder="Şirket Telefon Numarası" class="form-control" />
+        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+
+        <input asp-for="MailExtension" placeholder="Şirketin Mail Uzantısı" style="text-transform:lowercase" class="form-control" />
+        <span asp-validation-for="MailExtension" class="text-danger"></span>
+
+        <textarea asp-for="Address" placeholder="Adres Bilgileri" rows="3" cols="40"></textarea>
+        <span asp-validation-for="Address" class="text-danger"></span>
+
+        <h2>Paket Bilgileri</h2>
+        <label asp-for="PackageName" style="font-size:13px; margin-bottom:1px;"></label>
+        <select asp-for="PackageName" asp-items="ViewBag.PackageNames" class="form-control"></select>
+        <span asp-validation-for="PackageName" class="text-danger"></span>
+
+        <label asp-for="PackagePeriod" style="font-size:13px; margin-bottom:1px;"></label>
+        <select asp-for="PackagePeriod" asp-items="@(Html.GetEnumSelectList(typeof(MembershipPeriod)))" class="form-control"></select>
+        <span asp-validation-for="PackagePeriod" class="text-danger"></span>
+
+        <label asp-for="PackageStartDate" style="font-size:13px; margin-bottom:1px;"></label>
+        <input type="date" asp-for="PackageStartDate" class="form-control" />
+        <span asp-validation-for="PackageStartDate" class="text-danger"></span>
+
+        <h2>Yönetici Bilgileri</h2>
+        <input type="text" asp-for="EmployeeName" placeholder="Personelin Adı..." class="form-control" />
+        <span asp-validation-for="EmployeeName" class="text-danger"></span>
+
+        <input type="text" asp-for="EmployeeMiddleName" placeholder="Varsa İkinci Adı..." class="form-control" />
+        <span asp-validation-for="EmployeeMiddleName" class="text-danger"></span>
+
+        <input type="text" asp-for="EmployeeLastName" placeholder="Personelin Soyadı" class="form-control" />
+        <span asp-validation-for="EmployeeLastName" class="text-danger"></span>
+
+        <div class="btn-box">
+            <input type="submit" value="Kaydet" class="btn btn-info" />
+            <a class="btn btn-danger" asp-area="Platform" asp-controller="Home" asp-action="Index">Ana Sayfaya Dön</a>
+        </div>
+
+    </form>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+<script>
+    function showPreview(event) {
+        if (event.target.files.length > 0) {
+            var src = URL.createObjectURL(event.target.files[0]);
+            var preview = document.getElementById("file-ip-1-preview");
+            preview.src = src;
+            preview.style.display = "block";
+
+        }
+    }
+</script>

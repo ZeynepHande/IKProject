@@ -1,0 +1,64 @@
+﻿@model IKProject_2512.Models.CompanyPackage
+
+@{
+    ViewData["Title"] = "CompanyMshipDetails";
+}
+<style>
+    .form {
+        background: rgba(0,0,0,0.8);
+        padding: 40px;
+        max-width: 600px;
+        margin: 40px auto;
+        border-radius: 10px;
+        box-shadow: 0 0 20px 2px rgba(0,0,0,0.5);
+    }
+
+    h2 {
+        text-align: center;
+        text-shadow: 0 0 20px 2px rgba(0,0,0,0.9);
+        color: deepskyblue;
+        font-weight: 800;
+        margin: 0 0 30px;
+    }
+
+    dt, dd {
+        color: white;
+        text-align: left;
+    }
+</style>
+
+<div class="form">
+    <h2>Şirketin Üyelik Detayları</h2>
+    <dl class="row">
+        <dt class="col-sm-5">
+            Paket Seviyesi
+        </dt>
+        <dd class="col-sm-7">
+            : @Html.DisplayFor(model => model.Package.PackageName)
+        </dd>
+        <dt class="col-sm-5">
+            @Html.DisplayNameFor(model => model.MembershipMonthlyPeriod)
+        </dt>
+        <dd class="col-sm-7">
+            : @Html.DisplayFor(model => model.MembershipMonthlyPeriod)
+        </dd>
+        <dt class="col-sm-5">
+            @Html.DisplayNameFor(model => model.MembershipPackagePrice)
+        </dt>
+        <dd class="col-sm-7">
+            : @Html.DisplayFor(model => model.MembershipPackagePrice)
+        </dd>
+        <dt class="col-sm-5">
+            @Html.DisplayNameFor(model => model.PackageStartDate)
+        </dt>
+        <dd class="col-sm-7">
+            : @Html.DisplayFor(model => model.PackageStartDate)
+        </dd>
+        <dt class="col-sm-5">
+            @Html.DisplayNameFor(model => model.PackageRemainingMonths)
+        </dt>
+        <dd class="col-sm-7">
+            : @Html.DisplayFor(model => model.PackageRemainingMonths) Ay
+        </dd>
+    </dl>
+</div>

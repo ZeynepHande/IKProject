@@ -1,0 +1,106 @@
+﻿@model IEnumerable<IKProject_2512.Models.MembershipPackage>
+
+@{
+    ViewData["Title"] = "MembershipList";
+}
+
+<h4>Üyelik Paketleri</h4>
+
+<p>
+    <a class="btn btn-info" asp-area="Platform" asp-controller="Membership" asp-action="PassiveMembershipList">Pasif Paketleri Görüntüle</a>  | 
+    <a class="btn btn-danger" asp-area="Platform" asp-controller="Membership" asp-action="CreatePackage">Yeni Üyelik Paketi Yarat</a>
+</p>
+<table class="table table-primary table-hover table-active table-info">
+    <thead>
+        <tr>
+            <th>
+                Paket Logosu
+            </th>
+            <th>
+                Paket Adı
+            </th>
+            <th>
+                Paket Kapasitesi
+            </th>
+            <th>
+                Aylık Paket Fiyatı
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                <img src="@("~/ImageFile/"+item.PhotoPath)" asp-append-version="true" width="200" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PackageName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PackageMaxCapacity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PackageBasePrice)
+            </td>
+
+            <td>
+                <a class="btn btn-dark" asp-area="Platform" asp-controller="Membership" asp-action="MShipEdit" asp-route-id="@item.PackageID">Düzenle</a> |
+                <a class="btn btn-primary" asp-area="Platform" asp-controller="Membership" asp-action="MShipDetails" asp-route-id="@item.PackageID">Detaylar</a>|
+                <a class="btn btn-danger" asp-area="Platform" asp-controller="Membership" asp-action="MShipDefinedCoList" asp-route-id="@item.PackageID">Paketi Sil</a>
+
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+@*<div class="header_fixed">
+    <table>
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.PhotoPath)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PackageName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PackageMaxCapacity)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PackageBasePrice)
+                </th>
+
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <img src="@("~/ImageFile/"+item.PhotoPath)" asp-append-version="true" width="200" />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PackageName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PackageMaxCapacity)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PackageBasePrice)
+                    </td>
+
+                    <td>
+                        <a class="btn btn-dark" asp-area="Platform" asp-controller="Membership" asp-action="MShipEdit" asp-route-id="@item.PackageID">Düzenle</a> |
+                        <a class="btn btn-primary" asp-area="Platform" asp-controller="Membership" asp-action="MShipDetails" asp-route-id="@item.PackageID">Detaylar</a>|
+                        <a class="btn btn-danger" asp-area="Platform" asp-controller="Membership" asp-action="MShipDefinedCoList" asp-route-id="@item.PackageID">Paketi Sil</a>
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>*@

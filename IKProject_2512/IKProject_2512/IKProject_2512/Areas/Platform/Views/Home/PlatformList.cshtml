@@ -1,0 +1,103 @@
+﻿@model IEnumerable<IKProject_2512.Models.PM>
+@{
+    ViewData["Title"] = "PlatformList";
+}
+<h4>Platform Yöneticileri Listesi</h4>
+
+<style>
+    .table_responsive {
+        max-width:900px;
+        border: 1px solid deepskyblue;
+        background-color: #efefef33;
+        padding: 15px;
+        overflow: auto;
+        margin: auto;
+        border-radius: 4px;
+    }
+
+    table {
+         width:100%;
+        font-size: 10px;
+        color: #444;
+        white-space: nowrap;
+        border-collapse: collapse;
+    }
+
+        table > thead {
+            background-color: deepskyblue;
+            color: #fff;
+        }
+
+            table > thead th {
+                padding: 15px;
+            }
+
+        table th, table td {
+            border: 1px solid #00000017;
+            padding: 10px 15px;
+        }
+
+        table > tbody > tr > td > img {
+            display: inline-block;
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid #fff;
+            box-shadow: 0 2px 6px #0003;
+        }
+
+        table > tbody > tr {
+            background-color: #fff;
+            transition: 0.3s ease-in-out;
+        }
+
+            table > tbody > tr:nth-child(even) {
+                background-color: rgb(238,238,238);
+            }
+
+            table > tbody > tr:hover {
+                filter: drop-shadow(0px 2px 6px #0002);
+            }
+</style>
+<div class="table_responsive">
+    <table>
+        <thead>
+            <tr>
+                <th>Fotoğrafı</th>
+                <th>Adı</th>
+                <th>Soyadı</th>
+                <th>İşlem</th>
+            </tr>
+        </thead>
+        <tbody style="text-transform:capitalize">
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <img src="@("~/ImageFile/"+item.PhotoPath)" asp-append-version="true" width="200" />
+                    </td>
+                    <td> @Html.DisplayFor(modelItem => item.Name) @Html.DisplayFor(modelItem => item.MiddleName)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Surname)</td>
+
+                    <td>
+                        @if (item.IsAdmin == true && ViewBag.ActiveID == item.ID || item.IsAdmin == false)
+                        {
+                            <a class="btn btn-dark" asp-area="Platform" asp-controller="Home" asp-action="Edit" asp-route-id="@item.ID">Güncelle</a>
+                        }
+
+                        <a class="btn btn-info" asp-area="Platform" asp-controller="Home" asp-action="Details" asp-route-id="@item.ID">Detayları Gör</a>
+
+                        @if (item.IsAdmin == false && item.ID != ViewBag.ActiveID)
+                        {
+                            <a class="btn btn-danger" asp-area="Platform" asp-controller="Home" asp-action="Delete" asp-route-id="@item.ID">Yöneticiyi Sil</a>
+                        }
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <a class="btn btn-danger text-white" asp-action="PassivePlatformList">Aktif Olmayan Yönetici Listesini Görüntüle</a>
+
+</div>

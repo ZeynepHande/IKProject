@@ -1,0 +1,179 @@
+﻿@model IKProject_2512.Areas.Platform.Models.VMCoMgr
+
+@{
+    ViewData["Title"] = "EditCoMGr";
+}
+<style>
+    .form {
+        background: rgba(255,255,255,0.9);
+        padding: 40px;
+        max-width: 600px;
+        margin: 40px auto;
+        border-radius: 10px;
+        box-shadow: 0 0 20px 2px rgba(0,0,0,0.5);
+    }
+
+    h2 {
+        text-align: center;
+        text-shadow: 0 0 20px 2px rgba(0,0,0,0.9);
+        color: deepskyblue;
+        font-weight: 800;
+        margin: 0 0 30px;
+    }
+
+    h3 {
+        text-align: center;
+        color: black;
+    }
+
+    label {
+        color: black;
+    }
+
+    input, textarea {
+        display: block;
+        width: 100%;
+        height: 100%;
+        border: 1px solid black;
+        color: black;
+    }
+
+    textarea {
+        border: 3px solid black;
+        resize: vertical;
+    }
+
+    .form-group {
+        position: relative;
+        margin-bottom: 20px;
+    }
+
+    /*.form-control {
+        color: black;
+    }*/
+
+    .form-input {
+        width: 300px;
+        padding: 20px;
+        background: #fff;
+        border: 2px dashed #555;
+    }
+
+        .form-input input {
+            display: none;
+        }
+
+        .form-input label {
+            display: block;
+            width: 100px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            background: #333;
+            color: #fff;
+            font-size: 12px;
+            font-weight: 500;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .form-input img {
+            width: 100px;
+            display: none;
+            margin-top: 5px;
+        }
+</style>
+
+<div class="form">
+    <h2>Şirket Yöneticisi Güncelleme Ekranı</h2>
+
+    <form asp-action="EditCoMGr" method="post" enctype="multipart/form-data">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="EmployeeID" />
+
+
+        <div class="form-input">
+            <label for="file-ip-1">FotoğrafYükle</label>
+            <input type="file" asp-for="PhotoFile" id="file-ip-1" accept="image/*" onchange="showPreview(event);" />
+            <div class="preview m-1">
+                <img id="file-ip-1-preview" />
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label asp-for="EmployeeName" class="control-label"></label>
+            <input asp-for="EmployeeName" class="form-control" />
+            <span asp-validation-for="EmployeeName" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="EmployeeMiddleName" class="control-label"></label>
+            <input asp-for="EmployeeMiddleName" class="form-control" />
+            <span asp-validation-for="EmployeeMiddleName" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="EmployeeLastName" class="control-label"></label>
+            <input asp-for="EmployeeLastName" class="form-control" />
+            <span asp-validation-for="EmployeeLastName" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Title" class="control-label"></label>
+            <input asp-for="Title" class="form-control" />
+            <span asp-validation-for="Title" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Department" class="control-label"></label>
+            <input asp-for="Department" class="form-control" />
+            <span asp-validation-for="Department" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="MailAddress" class="control-label"></label>
+            <input asp-for="MailAddress" class="form-control" />
+            <span asp-validation-for="MailAddress" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="PhoneNumber" class="control-label"></label>
+            <input asp-for="PhoneNumber" class="form-control" />
+            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="BirthDate" class="control-label"></label>
+            <input type="date" asp-for="BirthDate" class="form-control" />
+            <span asp-validation-for="BirthDate" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="HireDate" class="control-label"></label>
+            <input type="date" asp-for="HireDate" class="form-control" />
+            <span asp-validation-for="HireDate" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="TerminationDate" class="control-label"></label>
+            <input type="date" asp-for="TerminationDate" class="form-control" />
+            <span asp-validation-for="TerminationDate" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="HomeAddress" class="control-label"></label>
+            <textarea asp-for="HomeAddress" class="form-control"></textarea>
+            <span asp-validation-for="HomeAddress" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Kaydet" class="btn btn-success" asp-route-id="@Model.EmployeeID" />
+            <a class="btn btn-info" asp-area="Platform" asp-controller="Company" asp-action="CoMgrList">Listeye Geri Dön</a>
+        </div>
+    </form>
+</div>
+
+<script>
+    function showPreview(event) {
+        if (event.target.files.length > 0) {
+            var src = URL.createObjectURL(event.target.files[0]);
+            var preview = document.getElementById("file-ip-1-preview");
+            preview.src = src;
+            preview.style.display = "block";
+
+        }
+    }
+</script>
+
+

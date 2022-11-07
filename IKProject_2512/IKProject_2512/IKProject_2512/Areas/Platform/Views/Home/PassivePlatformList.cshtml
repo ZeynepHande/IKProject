@@ -1,0 +1,56 @@
+﻿@model IEnumerable<IKProject_2512.Models.PM>
+@{
+    ViewData["Title"] = "PlatformList";
+}
+<br />
+<br />
+<br />
+<h1>Aktif Olmayan Platform Yöneticileri Listesi</h1>
+<br />
+<br />
+
+<table class="table " style="text-transform:capitalize">
+    <thead>
+        <tr>
+            <th>
+                Kişi Fotoğrafı
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Surname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TerminationDate)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                <img src="@("~/ImageFile/"+item.PhotoPath)" asp-append-version="true" width="200" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name) @Html.DisplayFor(modelItem => item.MiddleName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Surname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TerminationDate)
+            </td>
+            
+            <td>
+                <a class="btn btn-info" asp-area="Platform" asp-controller="Home" asp-action="Details" asp-route-id="@item.ID">Detayları Gör</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+
+
+

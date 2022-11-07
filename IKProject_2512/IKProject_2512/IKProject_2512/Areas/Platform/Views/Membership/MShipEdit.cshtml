@@ -1,0 +1,58 @@
+﻿@model IKProject_2512.Areas.Platform.Models.PackageModel
+
+@{
+    ViewData["Title"] = "MShipEdit";
+}
+<style>
+    .form {
+        background: rgba(255,255,255,0.9);
+        padding: 40px;
+        max-width: 600px;
+        margin: 40px auto;
+        border-radius: 10px;
+        box-shadow: 0 0 20px 2px rgba(0,0,0,0.5);
+    }
+    h2 {
+        text-align: center;
+        text-shadow: 0 0 20px 2px rgba(0,0,0,0.9);
+        color: deepskyblue;
+        font-weight: 800;
+        margin: 0 0 30px;
+    }
+</style>
+<div class="form">
+    <h2>Üyelik Paketi Düzenleme</h2>
+    <img src="@("~/ImageFile/"+Model.PhotoPath)" asp-append-version="true" width="100" />
+    <form asp-action="MShipEdit">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="PackageID" />
+        <input type="hidden" asp-for="PhotoPath" />
+        <div class="form-group">
+            <label asp-for="PackageName" class="control-label"></label>
+            <input asp-for="PackageName" class="form-control" />
+            <span asp-validation-for="PackageName" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="PackageMaxCapacity" class="control-label"></label>
+            <input asp-for="PackageMaxCapacity" class="form-control" />
+            <span asp-validation-for="PackageMaxCapacity" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="PackageBasePrice" class="control-label"></label>
+            <input asp-for="PackageBasePrice" class="form-control" />
+            <span asp-validation-for="PackageBasePrice" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+
+            <input type="submit" value="Kaydet" class="btn btn-primary" /> | 
+            <a class="btn btn-danger" asp-area="Platform" asp-controller="Membership" asp-action="MembershipList">Üyelik Paketleri Listesine Geri Dön</a>
+        </div>
+    </form>
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
